@@ -1,0 +1,37 @@
+<tool id="rpRankerReader" name="RP reader" version="1.0">
+  <description>Convert the output of RP2paths to SBML files</description>
+  <requirements>
+    <container type="docker">ibisba/rpranker:latest</container>
+  </requirements>
+  <!--
+  <stdio>
+    <exit_code range="1:" level="error"/>
+  </stdio>
+  -->
+  <stdio>
+		<regex match="WARNING:" level="warning" />
+	</stdio>
+  <command><![CDATA[
+    '$__tool_directory__/wrapRPreader.py' -rp2paths_compounds '$rp2paths_compounds' -rp2paths_scope '$rp2paths_scope' -rp2paths_outPaths '$rp2paths_outPaths' -outSBMLzip '$outSBMLzip'
+  ]]></command>
+  <inputs>
+    <param name="rp2paths_outPaths" type="data" format="csv" label="RP2paths out_paths" />
+    <param name="rp2paths_compounds" type="data" format="tsv" label="RP2paths compounts" />
+    <param name="rp2paths_scope" type="data" format="csv" label="RP2paths scope results" />
+  </inputs>
+  <outputs>
+    <data name="outSBMLzip" format="zip" label="rpSBML" />
+  </outputs>
+  <help>
+    Parse the rp2paths output to the 
+  </help>
+</tool>
+
+<!--      
+    <data name="outSBMLtar" format="tar.xz" label="rpSBML" />
+    '$__tool_directory__/wrapRPreader.py' -rp2paths_compounds '$rp2paths_compounds' -rp2paths_scope '$rp2paths_scope' -model_compartments '$model_compartments' -model_sink '$model_sink' -rp2paths_outPaths '$rp2paths_outPaths' -outSBMLtar '$outSBMLtar'
+
+    <param name="model_compartments" type="data" format="tsv" label="Model list of compartments" />
+    <param name="model_sink" type="data" format="tsv" label="Model list of chemicals (RP sink)" />
+ -->
+

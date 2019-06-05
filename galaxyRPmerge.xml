@@ -1,0 +1,23 @@
+<tool id="rpRankerMerge" name="RP SBML merge" version="1.0">
+  <description>Merge an SBML file to previously generated rpSBML zip objects</description>
+  <requirements>
+    <container type="docker">ibisba/rpranker:latest</container>
+  </requirements>
+  <stdio>
+    <regex match="WARNING:" level="warning" />
+    <regex match="ERROR:root:ChemAxon" level="warning" />
+  </stdio>
+  <command><![CDATA[
+    '$__tool_directory__/wrapRPmerge.py' -inSBMLzip '$inSBMLzip' -outSBMLzip '$outSBMLzip' -inModel '$inModel'
+  ]]></command>
+  <inputs>
+    <param name="inSBMLzip" type="data" format="zip" label="rpSBML ZIP collection" />
+    <param name="inModel" type="data" format="sbml" label="Input SBML file" />
+  </inputs>
+  <outputs>
+    <data name="outSBMLzip" format="zip" label="rpSBML merged files" />
+  </outputs>
+  <help>`
+   This is the help section. Should really write something usefull here :) 
+  </help>
+</tool>

@@ -1,0 +1,19 @@
+<tool id="rpSinkGen" name="Generate sink from SBML file" version="1.0">
+  <description>Generate the sink from an SBML file</description>
+  <requirements>
+    <container type="docker">ibisba/rpranker:latest</container>
+  </requirements>
+  <command><![CDATA[
+		'$__tool_directory__/extractSink.py' -inSBML '$inSBML' -outSink '$outSink' -compartmentId '$compartmentId'
+		]]></command>
+  <inputs>
+    <param name="inSBML" type="data" format="sbml" label="Input GEM SBML model" optional="false" />
+    <param name="compartmentId" type="text" value="MNXC3" label="Sink compartment" optional="true" />
+  </inputs>
+  <outputs>
+    <data name="outSink" format="csv" label="Output sink" />
+  </outputs>
+  <help>
+    Parse the rp2paths output to the 
+  </help>
+</tool>

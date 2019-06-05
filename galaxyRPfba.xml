@@ -1,0 +1,23 @@
+<tool id="rpRankerFBA" name="RP FBA" version="1.0">
+	<description>Calculate the FBA for the RetroPath2.0 heterologous pathway</description>
+  <requirements>
+    <container type="docker">ibisba/rpranker:latest</container>
+  </requirements>
+  <!--
+  <stdio>
+    <exit_code range="1:" level="error"/>
+  </stdio>
+  -->
+  <command><![CDATA[
+    '$__tool_directory__/wrapRPfba.py' -inSBMLzip '$inSBMLzip' -outSBMLzip '$outSBMLzip'
+  ]]></command>
+  <inputs>
+    <param name="inSBMLzip" type="data" format="zip" label="rpSBML" />
+  </inputs>
+  <outputs>
+    <data name="outSBMLzip" format="zip" label="rpSBML+fba" />
+  </outputs>
+  <help>`
+   This is the help section. Should really write something usefull here :) 
+  </help>
+</tool>
